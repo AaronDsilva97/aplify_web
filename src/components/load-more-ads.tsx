@@ -6,6 +6,7 @@ import Spinner from "@/components/ui/spinner";
 import { getAds } from "@/actions/getAds";
 
 import { Ads } from "./ads";
+import { AdResponse } from "@/types/AdsResponse";
 
 export function LoadMore() {
   const [ads, setAds] = useState<any[]>([]);
@@ -19,7 +20,12 @@ export function LoadMore() {
 
   const loadMoreAds = async () => {
     const { latitude, longitude } = location;
-    const newAds = (await getAds(page, 20, latitude, longitude)) ?? [];
+    const newAds: AdResponse = (await getAds(
+      page,
+      20,
+      latitude,
+      longitude
+    )) as AdResponse;
     setAds((prevAds: any[]) => [...prevAds, ...newAds?.data?.docs]);
     if (newAds?.data?.hasNextPage) {
       setPage(newAds?.data?.nextPage);
