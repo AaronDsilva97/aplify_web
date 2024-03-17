@@ -13,6 +13,7 @@ export function Ads({ ads }: AdsProps) {
         return (
           <Card
             key={ad._id}
+            id={ad._id}
             createdAt={ad.created_at}
             title={ad.subject}
             price={ad.price}

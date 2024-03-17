@@ -6,7 +6,9 @@ export async function getAds(
   page = 1,
   limit = 20,
   latitude = 20.5937,
-  longitude = 78.9629
+  longitude = 78.9629,
+  category = "all",
+  cache: RequestCache = "default"
 ) {
   try {
     const res = await fetch(
@@ -21,7 +23,9 @@ export async function getAds(
           longitude: longitude,
           page: page,
           limit: limit,
+          category: category,
         }),
+        cache: cache,
       }
     );
 
